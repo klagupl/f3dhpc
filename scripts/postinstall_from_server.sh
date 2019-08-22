@@ -3,11 +3,6 @@
 # Execute once all nodes are installed, rebooted themselves, NAT, pdsh working etc.
 # This script adds some final touches
 
-yum -y install squid
-systemctl start squid 
-systemctl enable squid
-
-pdsh "echo "proxy=http://172.16.0.254:3128" >> /etc/yum.conf"
 
 # make sure SELINUX is dead.
 pdsh "sed 's/^SELINUX=.*/SELINUX=disabled/' /etc/selinux/config > /etc/selinux/config.tmp; mv -f /etc/selinux/config.tmp /etc/selinux/config"

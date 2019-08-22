@@ -14,3 +14,7 @@ echo "User ID is " $USERID ", Group ID is " $GRPID
 pdsh  groupadd $1 -g $GRPID
 pdsh  adduser -M $1 -u $USERID -g $1 -d /home/$1
 
+su $1 -c"ssh-keygen"
+
+cat /home/$1/.ssh/id_rsa.pub >> /home/$1/.ssh/authorized_keys
+chown $1:$1 /home/$1/.ssh/authorized_keys
